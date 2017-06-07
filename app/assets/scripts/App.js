@@ -3,6 +3,8 @@ var playerXToMove = true;
 var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var totalsArray = [];
 var winnerDeclared = false;
+var playerXIsHuman = true;
+var player0IsHuman = true;
 
 // this lists indices in movesLog that correspond to totalsArray
 var squaresLookup = [
@@ -78,7 +80,6 @@ function checkForWinner(index, playerX) {
     if (winnerDeclared === false) {
         checkForDraw();
     }
-
 }
 
 function checkForDraw() {
@@ -103,7 +104,7 @@ function refreshTotalsArray() {
     totalsArray.push(movesLog[2] + movesLog[4] + movesLog[6]); // 7 diagonal: top-right to bottom-left
 }
 
-function computerMove() {
+function computerPlanMove() {
 // computer is '0s'
   var squareToMoveTo;
   refreshTotalsArray();
@@ -147,30 +148,18 @@ function computerMove() {
     console.log("corner: " + squareToMoveTo);
   } else {
     squareToMoveTo = movesLog.indexOf(0);
+    console.log("wherever!: " +squareToMoveTo);
   }
+  drawComputerMove(squareToMoveTo);
+}
 
-  //
-  //check for imminent computer win i.e. totalsArray includes '10' - if so, make move
-  // if totals includes 10
-  // find index in totls that includes 10
-  // if index 0 then it is top row, etc. corresponding indices range in moves log will be 0 - 2
-  // in corresponding indices range in moves log, find index with value 0
-  // make move on board in square that corresponds to this index
-  //
-  //
-  //check for imminent human win - if so, make move to block
-  //as above, but for totals of "2"
-  //
-  //if no imminent win and no one has moved to center square, move to center square
-  //
-  //
-  //if none of above, make a move adjacent to a corner if available
-  //look up indices of corner squares in moveslog. move to first empty one
-  //
-  //if no empty corner is available, move to any space that is available
-  //  find value 0 in moves log and move there
-  
-  //run checkFoWinner();
-  //
-  
+function drawComputerMove(squareToMoveTo) {
+  if (playerXToMove === true) {
+       var icon = iconX();
+    } else {
+        var icon = iconO();
+    }
+    cells[squareToMoveTo].appendChild(icon);
+    checkForWinner(squareToMoveTo, playerXToMove);
+    playerXToMove = !playerXToMove;
 }
