@@ -1,0 +1,6 @@
+*.swp
+images/*
+node_modules/*
+dist/*
+misc/*
+assets/images/*
