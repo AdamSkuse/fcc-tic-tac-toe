@@ -3,8 +3,9 @@ var playerXToMove = true;
 var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var totalsArray = [];
 var winnerDeclared = false;
-var playerXIsHuman = true;
-var player0IsHuman = true;
+var playerXIsHuman = true;  // default to true
+var player0IsHuman = false;   // default to true
+var computersTurn = false;  //default to false
 
 // this lists indices in movesLog that correspond to totalsArray
 var squaresLookup = [
@@ -22,19 +23,33 @@ for (var i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", playerMove);
 }
 
+if (computersTurn === true) {
+  computerPlanMove();
+}
+
 function playerMove(){
-    if (this.hasChildNodes()) {
-        alert("This space is taken!");
-    } else {
-      if (playerXToMove === true) {
-           var icon = iconX();
-        } else {
-            var icon = iconO();
-        }
-        this.appendChild(icon);
-        checkForWinner(this.id, playerXToMove);
-        playerXToMove = !playerXToMove;
+  if (winnerDeclared === false) {
+    if (!computersTurn) {
+      if (this.hasChildNodes()) {
+          alert("This space is taken!");
+      } else {
+        if (playerXToMove === true) {
+             var icon = iconX();
+          } else {
+              var icon = iconO();
+          }
+          this.appendChild(icon);
+          checkForWinner(this.id, playerXToMove);
+          playerXToMove = !playerXToMove;
+          if (winnerDeclared ===false) {
+            if (!playerXIsHuman || !player0IsHuman) {
+              computersTurn = true;
+              computerPlanMove();
+            }
+          }
+      }
     }
+  }
 }
 
 function iconX() {
@@ -151,6 +166,13 @@ function computerPlanMove() {
     console.log("wherever!: " +squareToMoveTo);
   }
   drawComputerMove(squareToMoveTo);
+  checkForWinner(squareToMoveTo, playerXToMove);
+  playerXToMove = !playerXToMove;
+    if (playerXIsHuman || player0IsHuman) {
+      computersTurn = false;
+    } else if (winnerDeclared === false) {
+      computerPlanMove();
+    }
 }
 
 function drawComputerMove(squareToMoveTo) {
@@ -160,6 +182,4 @@ function drawComputerMove(squareToMoveTo) {
         var icon = iconO();
     }
     cells[squareToMoveTo].appendChild(icon);
-    checkForWinner(squareToMoveTo, playerXToMove);
-    playerXToMove = !playerXToMove;
 }
