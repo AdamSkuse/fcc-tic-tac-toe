@@ -451,107 +451,88 @@ template {
 
 /* Main page colors */
 
-/* Calculator colors */
-
-/* Calculator display colors */
-
-/* Buttons - regular */
-
-/* Buttons - function */
-
-body {
-  padding-top: 100px;
-  font-family: Helvetica, sans-serif;
-  background-color: #994b33;
-}
-
-.calculator-body {
-  margin: auto;
-  width: 215px;
-  background-color: #ccc;
+.container {
+  margin: 0 auto;
   text-align: center;
-  padding: 10px;
-  padding-top: 20px;
-  border-radius: 25px;
-  -webkit-box-shadow: 5px 10px 30px 1px rgba(0, 0, 0, 0.60), inset -1px -5px 10px 0.3px #999;
-          box-shadow: 5px 10px 30px 1px rgba(0, 0, 0, 0.60), inset -1px -5px 10px 0.3px #999;
-}
+ }
 
-.display {
-  width: 200px;
-  margin: auto;
-  background-color: #d9f2d9;
-  border-color: #999;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 5px;
-}
-
-.display-current {
-  font-family: 'Sarpanch', sans-serif;
-  font-size: 2rem;
-  line-height: 90%;
-  text-align: right;
-}
-
-.display-buffer {
-  font-family: 'Sarpanch', sans-serif;
-  font-size: 0.7rem;
-  background-color: #b2d8b2;
-  text-align: right;
-}
-
-.button-row {
-  width: 100%;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.button {
+.col-1-2 {
   display: inline-block;
-  background-color: #333;
-  -webkit-box-shadow: inset -1px -3px 10px 1px #000;
-          box-shadow: inset -1px -3px 10px 1px #000;
-  color: #fff;
-  border-radius: 5px;
+  vertical-align: top;
+  width: 45%;
   padding: 10px;
-  text-align: center;
-  margin: 5px;
-  width: 20px;
-  height: 20px;
-  border-bottom: 3px solid black;
 }
 
-.button-function {
-  background-color: #f00;
-  -webkit-box-shadow: inset -1px -1px 1px 1px #515;
-          box-shadow: inset -1px -1px 1px 1px #515;
+.gameboard {
+    color: red;
+    border-style: solid;
+    border-color: black;
+    border-width: 0px;
+    width: 300px;
+    height: 300px;
+    padding: 0px;
+    margin: 0 auto;
 }
 
-.button-pressed {
-  -webkit-transform: scale(0.95);
-          transform: scale(0.95);
+.cell {
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+    border-style:solid;
+    border-width: 1px;
+    border-color: black;
+    width: 30%;
+    height: 30%;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.button-equals-top {
-  height: 75px;
-  margin-bottom: -80px;
-  position: relative;
+.cell:hover {
+    background-color: #e1e1ea;
+    -webkit-box-shadow: 0 0 10px #e1e1e1;
+            box-shadow: 0 0 10px #e1e1e1;
 }
 
-.button-equals-bottom {
-  visibility: hidden;
+.cell:first-of-type {
+  border-left-color: transparent;
+  border-top-color: transparent;
 }
 
-.floating-symbol-equals {
-  position: absolute;
-  left: 17px;
-  top: 35px;
+.cell:nth-of-type(2) {
+  border-top-color: transparent;
 }
 
-.button-zero {
-  width: 80px;
-  margin-right: 0px;
-  position: relative;
-  border-radius: 5px;
+.cell:nth-of-type(3) {
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+.cell:nth-of-type(4) {
+  border-left-color: transparent;
+}
+
+.cell:nth-of-type(6) {
+  border-right-color: transparent;
+}
+
+.cell:nth-of-type(7) {
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.cell:nth-of-type(8) {
+  border-bottom-color: transparent;
+}
+
+.cell:nth-of-type(9) {
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+
+i {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
 }
