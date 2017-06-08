@@ -2,10 +2,10 @@ var cells = document.getElementsByClassName("cell");
 var playerXToMove = true;
 var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var totalsArray = [];
-var winnerDeclared = false;
+var winnerDeclared = true; //if true, no moves by either computer or human possible
 var playerXIsHuman = true;  // default to true
-var player0IsHuman = false;   // default to true
-var computersTurn = false;  //default to false
+var player0IsHuman = true;   // default to true
+var computersTurn = true;  //default to false
 
 // this lists indices in movesLog that correspond to totalsArray
 var squaresLookup = [
@@ -21,10 +21,6 @@ var squaresLookup = [
 
 for (var i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", playerMove);
-}
-
-if (computersTurn === true) {
-  computerPlanMove();
 }
 
 function playerMove(){

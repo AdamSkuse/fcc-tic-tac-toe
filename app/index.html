@@ -1,18 +1,14 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <title>FCC tic-tac-toe</title>
   <meta name="description" content="FCC tic-tac-toe">
   <meta name="author" content="Adam">
-
   <!-- build:css assets/styles/styles.css -->
   <link rel="stylesheet" href="temp/styles/styles.css">
   <!-- endbuild -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
 <body>
@@ -41,6 +37,12 @@
           <div id="win-message-div">
           </div>
       </div>
+  </div>
+  <div id="game-settings">
+    <h3>Game settings</h3>
+    Player X: <select name="player-x"><option value="human" selected>Human</option><option value="computer">Computer</option></select><br>
+    Player 0: <select name="player-0"><option value="human" selected>Human</option><option value="computer">Computer</option></select><br>
+    <button type="button" id="start-button">Start!</button>
   </div>
   <!-- build:js assets/scripts/App.js -->
   <script src="assets/scripts/App.js"></script>
