@@ -1,11 +1,15 @@
-var cells = document.getElementsByClassName("cell");
+var cells = document.getElementsByClassName('cell');
+var startButton = document.getElementById('start-button');
+var playerXSelector = document.getElementById('player-x-selector');
+var player0Selector = document.getElementById('player-0-selector');
 var playerXToMove = true;
-var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-var totalsArray = [];
+var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // each value corresponds to a square. '0' is empty, 'X's are 1, '0's are 5
+var totalsArray = []; // an array of the 'scores' for each row, column and diagonal. if any totals '3', that means three 'X's in a row, and thus X has won; if any total 15, then 0 has won
 var winnerDeclared = true; //if true, no moves by either computer or human possible
 var playerXIsHuman = true;  // default to true
 var player0IsHuman = true;   // default to true
-var computersTurn = true;  //default to false
+var computersTurn = false;  //default to false
+
 
 // this lists indices in movesLog that correspond to totalsArray
 var squaresLookup = [
@@ -23,13 +27,37 @@ for (var i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", playerMove);
 }
 
-function playerMove(){
-  if (winnerDeclared === false) {
-    if (!computersTurn) {
-      if (this.hasChildNodes()) {
+startButton.addEventListener('click', startGame);
+
+function startGame() {
+  console.log("Player X: " + playerXSelector.value);
+  console.log("Player 0: " + player0Selector.value);
+  if (playerXSelector.value === "computer") {
+    playerXIsHuman = false;
+    computersTurn = true;
+  } else {
+    playerXIsHuman = true;
+    computersTurn = false;
+  }
+  if (player0Selector.value === "computer") {
+    player0IsHuman = false;
+  } else {
+    player0IsHuman = true;
+  }
+
+  winnerDeclared = false; // this allows user to make move by clicking on the board
+  if (computersTurn === true) {
+    computerPlanMove();
+  }
+}
+
+function playerMove(){ //run when player clicks on a square
+  if (winnerDeclared === false) { //prevents player making moves on board if game over
+    if (!computersTurn) { //prevents player from making moves on comp's turn
+      if (this.hasChildNodes()) { //prevents player from moving in already-occupied square
           alert("This space is taken!");
       } else {
-        if (playerXToMove === true) {
+        if (playerXToMove === true) { //sets the icon to be drawn in square
              var icon = iconX();
           } else {
               var icon = iconO();
@@ -37,8 +65,8 @@ function playerMove(){
           this.appendChild(icon);
           checkForWinner(this.id, playerXToMove);
           playerXToMove = !playerXToMove;
-          if (winnerDeclared ===false) {
-            if (!playerXIsHuman || !player0IsHuman) {
+          if (winnerDeclared === false) {
+            if (!playerXIsHuman || !player0IsHuman) { //if the opponent is computer, computer takes turn
               computersTurn = true;
               computerPlanMove();
             }
@@ -65,13 +93,13 @@ function iconO() {
 }
 
 function checkForWinner(index, playerX) {
-    var playerNumber = 0;
-    if (playerX === true) {
+    var playerNumber = 0; // resets variable
+    if (playerX === true) { // each X is codified as "1"
         playerNumber = 1;
-    } else {
+    } else {                // each Y is codified as "5"
         playerNumber = 5;
     }
-    movesLog[index] = playerNumber;
+    movesLog[index] = playerNumber; // logs this
     refreshTotalsArray();
     if (totalsArray.includes(3)) {
         var winMessageDiv = document.getElementById("win-message-div");
