@@ -23,7 +23,11 @@ function resetGame() {
   totalsArray = [];
   scoreboard = [];
   updateScoreboard();
+  clearGameBoard();
   winnerDeclared = true;
+}
+
+function clearGameBoard() {
   for (var i = 0; i < cells.length; i++) {
     if (cells[i].hasChildNodes()) {
       cells[i].removeChild(cells[i].childNodes[0]);
@@ -32,7 +36,12 @@ function resetGame() {
 }
 
 function playAgain() {
-console.log('play again');
+  console.log('play again');
+  declareWinModal.style.display = "none";  
+  clearGameBoard();
+  movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
+  updateScoreboard();
+  winnerDeclared = false;
 }
 
 // this lists indices in movesLog that correspond to totalsArray
