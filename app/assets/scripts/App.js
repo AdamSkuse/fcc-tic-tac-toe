@@ -10,6 +10,7 @@ var winnerDeclared = true; //if true, no moves by either computer or human possi
 var playerXIsHuman = true;  // default to true
 var player0IsHuman = true;   // default to true
 var computersTurn = false;  //default to false
+var scoreboard = []; //array of previous game results so scoreboard can be redrawn;
 
 function resetGame() {
   playerXToMove = true;
@@ -123,19 +124,27 @@ function checkForWinner(index, playerX) {
 
 function checkForDraw() {
    if (!movesLog.includes(0)) {
-        var p = document.createElement("p");
-        var winMessageText = document.createTextNode("Draw!");
-        p.appendChild(winMessageText);
-        winMessageDiv.appendChild(p);
+     declareWin('No one');   
    }
 }
 
 function declareWin(result) {
-        var p = document.createElement("p");
-        var winMessageText = document.createTextNode(result + " wins!");
-        p.appendChild(winMessageText);
-        winMessageDiv.appendChild(p);
+        var scoreboardEntry = result + " wins!";
+        scoreboard.push(scoreboardEntry);
+        updateScoreboard();
         winnerDeclared = true;
+}
+
+function updateScoreboard() {
+  while (winMessageDiv.hasChildNodes()) {
+		winMessageDiv.removeChild(winMessageDiv.firstChild);
+	}
+  scoreboard.forEach(function(item) {
+    var p = document.createElement("p");
+    var winMessageText = document.createTextNode(item);
+    p.appendChild(winMessageText);
+    winMessageDiv.appendChild(p);
+  });
 }
 
 function declareDraw(){
