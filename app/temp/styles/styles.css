@@ -536,3 +536,15 @@ i {
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
 }
+
+.full-screen-modal {
+  background-color: green;
+  display: none;
+  height: 80%;
+  width: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
