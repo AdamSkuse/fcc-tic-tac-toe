@@ -124,3 +124,9 @@ i {
   left: 50px;
   opacity: 0.6;
 }
+
+.game-history {
+  background-color: green;
+  height: 400px;
+  overflow: scroll;
+}

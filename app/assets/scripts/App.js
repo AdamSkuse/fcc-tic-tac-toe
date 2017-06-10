@@ -2,7 +2,7 @@ var cells = document.getElementsByClassName('cell');
 var startButton = document.getElementById('start-button');
 var playerXSelector = document.getElementById('player-x-selector');
 var player0Selector = document.getElementById('player-0-selector');
-var winMessageDiv = document.getElementById('win-message-div');
+var gameHistoryDiv = document.getElementById('game-history-div');
 var declareWinModal = document.getElementById('declare-win-modal');
 var playAgainButton = document.getElementById('play-again-btn');
 var resetGameButton = document.getElementById('reset-game-btn');
@@ -21,6 +21,11 @@ var scoreboard = []; //array of previous game results so scoreboard can be redra
 function resetGame() {
   declareWinModal.style.display = "none";  
   playerXToMove = true;
+  playerXIsHuman = true;
+  player0IsHuman = true;
+  playerXSelector.value="human"; 
+  player0Selector.value="human"; 
+  computersTurn = false;
   movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
   totalsArray = [];
   scoreboard = [];
@@ -172,19 +177,15 @@ function declareWin(result) {
 }
 
 function updateScoreboard() {
-  while (winMessageDiv.hasChildNodes()) {
-		winMessageDiv.removeChild(winMessageDiv.firstChild);
+  while (gameHistoryDiv.hasChildNodes()) {
+		gameHistoryDiv.removeChild(gameHistoryDiv.firstChild);
 	}
-  scoreboard.forEach(function(item) {
+  scoreboard.forEach(function(item, index) {
     var p = document.createElement("p");
-    var winMessageText = document.createTextNode(item);
+    var winMessageText = document.createTextNode((index + 1) + "- " + item);
     p.appendChild(winMessageText);
-    winMessageDiv.appendChild(p);
+    gameHistoryDiv.appendChild(p);
   });
-}
-
-function declareDraw(){
-
 }
 
 function refreshTotalsArray() {
