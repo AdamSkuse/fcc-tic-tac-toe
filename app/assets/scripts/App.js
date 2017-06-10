@@ -7,6 +7,7 @@ var declareWinModal = document.getElementById('declare-win-modal');
 var playAgainButton = document.getElementById('play-again-btn');
 var resetGameButton = document.getElementById('reset-game-btn');
 var gameSettingsOverlay = document.getElementById('game-settings-overlay');
+var gameboardOverlay = document.getElementById('gameboard-overlay');
 
 var playerXToMove = true;
 var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // each value corresponds to a square. '0' is empty, 'X's are 1, '0's are 5
@@ -27,6 +28,7 @@ function resetGame() {
   clearGameBoard();
   winnerDeclared = true;
   gameSettingsOverlay.style.display = "none";
+  gameboardOverlay.style.display = "block";
 }
 
 function clearGameBoard() {
@@ -44,6 +46,11 @@ function playAgain() {
   movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
   updateScoreboard();
   winnerDeclared = false;
+  playerXToMove = true;
+  if (playerXIsHuman === false) {
+    computersTurn = true;
+    computerPlanMove();
+  }
 }
 
 // this lists indices in movesLog that correspond to totalsArray
@@ -82,6 +89,7 @@ function startGame() {
 
   winnerDeclared = false; // this allows user to make move by clicking on the board
   gameSettingsOverlay.style.display = "block";
+  gameboardOverlay.style.display = "none";
   if (computersTurn === true) {
     computerPlanMove();
   }
@@ -255,3 +263,5 @@ function drawComputerMove(squareToMoveTo) {
     }
     cells[squareToMoveTo].appendChild(icon);
 }
+
+
