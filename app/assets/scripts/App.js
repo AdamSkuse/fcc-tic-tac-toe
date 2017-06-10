@@ -10,6 +10,17 @@ var playerXIsHuman = true;  // default to true
 var player0IsHuman = true;   // default to true
 var computersTurn = false;  //default to false
 
+function resetGame() {
+  playerXToMove = true;
+  movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
+  totalsArray = [];
+  winnerDeclared = true;
+  for (var i = 0; i < cells.length; i++) {
+    if (cells[i].hasChildNodes()) {
+      cells[i].removeChild(cells[i].childNodes[0]);
+    }
+  }
+}
 
 // this lists indices in movesLog that correspond to totalsArray
 var squaresLookup = [
@@ -30,8 +41,6 @@ for (var i = 0; i < cells.length; i++) {
 startButton.addEventListener('click', startGame);
 
 function startGame() {
-  console.log("Player X: " + playerXSelector.value);
-  console.log("Player 0: " + player0Selector.value);
   if (playerXSelector.value === "computer") {
     playerXIsHuman = false;
     computersTurn = true;
