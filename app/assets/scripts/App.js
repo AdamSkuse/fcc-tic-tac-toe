@@ -2,7 +2,11 @@ var cells = document.getElementsByClassName('cell');
 var startButton = document.getElementById('start-button');
 var playerXSelector = document.getElementById('player-x-selector');
 var player0Selector = document.getElementById('player-0-selector');
-var winMessageDiv = document.getElementById("win-message-div");
+var winMessageDiv = document.getElementById('win-message-div');
+var declareWinModal = document.getElementById('declare-win-modal');
+var playAgainButton = document.getElementById('play-again-btn');
+var resetGameButton = document.getElementById('reset-game-btn');
+
 var playerXToMove = true;
 var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // each value corresponds to a square. '0' is empty, 'X's are 1, '0's are 5
 var totalsArray = []; // an array of the 'scores' for each row, column and diagonal. if any totals '3', that means three 'X's in a row, and thus X has won; if any total 15, then 0 has won
@@ -13,15 +17,22 @@ var computersTurn = false;  //default to false
 var scoreboard = []; //array of previous game results so scoreboard can be redrawn;
 
 function resetGame() {
+  declareWinModal.style.display = "none";  
   playerXToMove = true;
   movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
   totalsArray = [];
+  scoreboard = [];
+  updateScoreboard();
   winnerDeclared = true;
   for (var i = 0; i < cells.length; i++) {
     if (cells[i].hasChildNodes()) {
       cells[i].removeChild(cells[i].childNodes[0]);
     }
   }
+}
+
+function playAgain() {
+console.log('play again');
 }
 
 // this lists indices in movesLog that correspond to totalsArray
@@ -41,6 +52,8 @@ for (var i = 0; i < cells.length; i++) {
 }
 
 startButton.addEventListener('click', startGame);
+playAgainButton.addEventListener('click', playAgain);
+resetGameButton.addEventListener('click', resetGame);
 
 function startGame() {
   if (playerXSelector.value === "computer") {
@@ -129,10 +142,13 @@ function checkForDraw() {
 }
 
 function declareWin(result) {
-        var scoreboardEntry = result + " wins!";
-        scoreboard.push(scoreboardEntry);
-        updateScoreboard();
-        winnerDeclared = true;
+  var scoreboardEntry = result + " wins!";
+  scoreboard.push(scoreboardEntry);
+  updateScoreboard();
+  winnerDeclared = true;
+  var winnerDeclaration = document.getElementById('winner-declaration');
+  winnerDeclaration.innerHTML = scoreboardEntry;
+  declareWinModal.style.display = "initial";  
 }
 
 function updateScoreboard() {
