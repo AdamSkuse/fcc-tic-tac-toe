@@ -91,3 +91,20 @@ i {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.game-settings {
+width: 300px;
+height: 150px;
+position: absolute;
+}
+
+.game-settings-overlay {
+  background-color: #ccc;
+  display: none;
+  width: 300px;
+  height: 150px;
+  position: relative;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+}

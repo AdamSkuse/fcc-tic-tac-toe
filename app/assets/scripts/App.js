@@ -6,6 +6,7 @@ var winMessageDiv = document.getElementById('win-message-div');
 var declareWinModal = document.getElementById('declare-win-modal');
 var playAgainButton = document.getElementById('play-again-btn');
 var resetGameButton = document.getElementById('reset-game-btn');
+var gameSettingsOverlay = document.getElementById('game-settings-overlay');
 
 var playerXToMove = true;
 var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // each value corresponds to a square. '0' is empty, 'X's are 1, '0's are 5
@@ -25,6 +26,7 @@ function resetGame() {
   updateScoreboard();
   clearGameBoard();
   winnerDeclared = true;
+  gameSettingsOverlay.style.display = "none";
 }
 
 function clearGameBoard() {
@@ -79,6 +81,7 @@ function startGame() {
   }
 
   winnerDeclared = false; // this allows user to make move by clicking on the board
+  gameSettingsOverlay.style.display = "block";
   if (computersTurn === true) {
     computerPlanMove();
   }
