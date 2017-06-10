@@ -2,6 +2,7 @@ var cells = document.getElementsByClassName('cell');
 var startButton = document.getElementById('start-button');
 var playerXSelector = document.getElementById('player-x-selector');
 var player0Selector = document.getElementById('player-0-selector');
+var winMessageDiv = document.getElementById("win-message-div");
 var playerXToMove = true;
 var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // each value corresponds to a square. '0' is empty, 'X's are 1, '0's are 5
 var totalsArray = []; // an array of the 'scores' for each row, column and diagonal. if any totals '3', that means three 'X's in a row, and thus X has won; if any total 15, then 0 has won
@@ -108,22 +109,12 @@ function checkForWinner(index, playerX) {
     } else {                // each Y is codified as "5"
         playerNumber = 5;
     }
-    movesLog[index] = playerNumber; // logs this
+    movesLog[index] = playerNumber; // logs this...should refactor above code into a LogMove function
     refreshTotalsArray();
     if (totalsArray.includes(3)) {
-        var winMessageDiv = document.getElementById("win-message-div");
-        var p = document.createElement("p");
-        var winMessageText = document.createTextNode("X wins!");
-        p.appendChild(winMessageText);
-        winMessageDiv.appendChild(p);
-        winnerDeclared = true;
+      declareWin('X');
     } else if (totalsArray.includes(15)) {
-        var winMessageDiv = document.getElementById("win-message-div");
-        var p = document.createElement("p");
-        var winMessageText = document.createTextNode("0 wins!");
-        p.appendChild(winMessageText);
-        winMessageDiv.appendChild(p);
-        winnerDeclared = true;
+      declareWin('0');
     }
     if (winnerDeclared === false) {
         checkForDraw();
@@ -132,12 +123,23 @@ function checkForWinner(index, playerX) {
 
 function checkForDraw() {
    if (!movesLog.includes(0)) {
-        var winMessageDiv = document.getElementById("win-message-div");
         var p = document.createElement("p");
         var winMessageText = document.createTextNode("Draw!");
         p.appendChild(winMessageText);
         winMessageDiv.appendChild(p);
    }
+}
+
+function declareWin(result) {
+        var p = document.createElement("p");
+        var winMessageText = document.createTextNode(result + " wins!");
+        p.appendChild(winMessageText);
+        winMessageDiv.appendChild(p);
+        winnerDeclared = true;
+}
+
+function declareDraw(){
+
 }
 
 function refreshTotalsArray() {
