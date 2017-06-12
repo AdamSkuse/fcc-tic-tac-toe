@@ -12,38 +12,40 @@
 </head>
 
 <body>
-  <div>
-      <h1>Tic-tac-toe</h1>
+  <h1>Tic-tac-toe</h1>
+
+  <div class="gameboard">
+      <div class="cell" id="0"></div><!--
+      --><div class="cell" id="1"></div><!--
+      --><div class="cell" id="2"></i></div><!--
+      --><div class="cell" id="3"></div><!--
+      --><div class="cell" id="4"></div><!--
+      --><div class="cell" id="5"></div><!--
+      --><div class="cell" id="6"></div><!--
+      --><div class="cell" id="7"></i></div><!--
+      --><div class="cell" id="8"></div>
+    <div id="gameboard-overlay" class="gameboard-overlay"></div>
   </div>
 
-  <div class="container">
-      <div class="col-1-2">
-          <div class="gameboard">
-              <div class="cell" id="0"></div><!--
-              --><div class="cell" id="1"></div><!--
-              --><div class="cell" id="2"></i></div><!--
-              --><div class="cell" id="3"></div><!--
-              --><div class="cell" id="4"></div><!--
-              --><div class="cell" id="5"></div><!--
-              --><div class="cell" id="6"></div><!--
-              --><div class="cell" id="7"></i></div><!--
-              --><div class="cell" id="8"></div>
-          </div>
-          <div id="gameboard-overlay" class="gameboard-overlay"></div>
-      </div>
-      <div class="col-1-2">
-          <p>Scoreboard</p>
-          <div id="game-history-div" class="game-history">
-          </div>
-      </div>
+  <div id="game-history-div" class="scoreboard">
+    <div class="scoreboard-entry">
+      <i class="fa fa-close scoreboard-icon-x"></i>
+      <div class="scoreboard-score" id="scoreboard-score-tracker-x"></div> 
+    </div>
+    <div class="scoreboard-entry">
+      <i class="fa fa-genderless scoreboard-0"></i>
+      <div class="scoreboard-score" id="scoreboard-score-tracker-0"></div> 
+    </div>
+
   </div>
   <div id="game-settings" class="game-settings">
     <h3>Game settings</h3>
     Player X: <select name="player-x-selector" id="player-x-selector"><option value="human" selected>Human</option><option value="computer">Computer</option></select><br>
     Player 0: <select name="player-0-selector" id="player-0-selector"><option value="human" selected>Human</option><option value="computer">Computer</option></select><br>
     <button type="button" id="start-button">Start!</button>
+    <div id="game-settings-overlay" class="game-settings-overlay"></div>
   </div>
-  <div id="game-settings-overlay" class="game-settings-overlay"></div>
+
   <div class="full-screen-modal" id="declare-win-modal">
     <h3 id="winner-declaration"></h3>
     <button type="button" id="play-again-btn">Play again</button>

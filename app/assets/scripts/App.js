@@ -8,6 +8,10 @@ var playAgainButton = document.getElementById('play-again-btn');
 var resetGameButton = document.getElementById('reset-game-btn');
 var gameSettingsOverlay = document.getElementById('game-settings-overlay');
 var gameboardOverlay = document.getElementById('gameboard-overlay');
+var scoreboardScoreTrackerX = document.getElementById('scoreboard-score-tracker-x');
+var scoreboardScoreTracker0 = document.getElementById('scoreboard-score-tracker-0');
+var winsLogX = 0;
+var winsLog0 = 0;
 
 var playerXToMove = true;
 var movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // each value corresponds to a square. '0' is empty, 'X's are 1, '0's are 5
@@ -29,6 +33,8 @@ function resetGame() {
   movesLog = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
   totalsArray = [];
   scoreboard = [];
+  winsLogX = 0;
+  winsLog0 = 0;
   updateScoreboard();
   clearGameBoard();
   winnerDeclared = true;
@@ -167,25 +173,21 @@ function checkForDraw() {
 }
 
 function declareWin(result) {
-  var scoreboardEntry = result + " wins!";
-  scoreboard.push(scoreboardEntry);
+  if (result === 'X') {
+    winsLogX = winsLogX + 1;
+  } else if (result === '0'){
+    winsLog0 = winsLog0 + 1
+  }
   updateScoreboard();
   winnerDeclared = true;
   var winnerDeclaration = document.getElementById('winner-declaration');
-  winnerDeclaration.innerHTML = scoreboardEntry;
+  winnerDeclaration.innerHTML = result + ' wins!';
   declareWinModal.style.display = "initial";  
 }
 
 function updateScoreboard() {
-  while (gameHistoryDiv.hasChildNodes()) {
-		gameHistoryDiv.removeChild(gameHistoryDiv.firstChild);
-	}
-  scoreboard.forEach(function(item, index) {
-    var p = document.createElement("p");
-    var winMessageText = document.createTextNode((index + 1) + "- " + item);
-    p.appendChild(winMessageText);
-    gameHistoryDiv.appendChild(p);
-  });
+  scoreboardScoreTrackerX.innerHTML = winsLogX;
+  scoreboardScoreTracker0.innerHTML = winsLog0;
 }
 
 function refreshTotalsArray() {

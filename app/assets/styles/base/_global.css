@@ -1,17 +1,5 @@
-.container {
-  margin: 0 auto;
-  text-align: center;
- }
-
-.col-1-2 {
-  display: inline-block;
-  vertical-align: top;
-  width: 45%;
-  padding: 10px;
-}
 
 .gameboard {
-    color: red;
     border-style: solid;
     border-color: black;
     border-width: 0px;
@@ -19,9 +7,7 @@
     height: 300px;
     padding: 0px;
     margin: 0 auto;
-    position: absolute;
-    left: 100px;
-    top: 100px;
+    position: relative;
 }
 
 .gameboard-overlay {
@@ -29,70 +15,10 @@
   background-color: #ccc;
   width: 300px;
   height: 300px;
-  position: absolute;
-  top: 100px;
-  left: 100px;
   opacity: 0.6;
-}
-.cell {
-    padding: 0px;
-    margin: 0px;
-    display: inline-block;
-    border-style:solid;
-    border-width: 1px;
-    border-color: black;
-    width: 30%;
-    height: 30%;
-    border-collapse: collapse;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.cell:hover {
-    background-color: #e1e1ea;
-    box-shadow: 0 0 10px #e1e1e1;
-}
-
-.cell:first-of-type {
-  border-left-color: transparent;
-  border-top-color: transparent;
-}
-
-.cell:nth-of-type(2) {
-  border-top-color: transparent;
-}
-
-.cell:nth-of-type(3) {
-  border-right-color: transparent;
-  border-top-color: transparent;
-}
-
-.cell:nth-of-type(4) {
-  border-left-color: transparent;
-}
-
-.cell:nth-of-type(6) {
-  border-right-color: transparent;
-}
-
-.cell:nth-of-type(7) {
-  border-left-color: transparent;
-  border-bottom-color: transparent;
-}
-
-.cell:nth-of-type(8) {
-  border-bottom-color: transparent;
-}
-
-.cell:nth-of-type(9) {
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-}
-
-i {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .full-screen-modal {
@@ -109,9 +35,9 @@ i {
 .game-settings {
   width: 300px;
   height: 150px;
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
+  margin: 0 auto;
+  position: relative;
+  opacity: 0.2;
 }
 
 .game-settings-overlay {
@@ -120,13 +46,14 @@ i {
   width: 300px;
   height: 150px;
   position: absolute;
-  bottom: 50px;
-  left: 50px;
+  top: 0;
+  left: 0;
   opacity: 0.6;
 }
 
-.game-history {
+.scoreboard {
   background-color: green;
-  height: 400px;
-  overflow: scroll;
+  height: 50px;
+  width: 300px;
+  margin: 0 auto;
 }
