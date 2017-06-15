@@ -1,4 +1,7 @@
-
+body {
+font: 300 16px/22px "Lato", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+padding: 10px;
+}
 .gameboard {
     border-style: solid;
     border-color: black;
@@ -8,17 +11,18 @@
     padding: 0px;
     margin: 0 auto;
     position: relative;
+    text-align: center;
 }
 
 .gameboard-overlay {
   display: inline-block;
   background-color: #ccc;
-  width: 300px;
-  height: 300px;
+  width: 276px;
+  height: 276px;
   opacity: 0.6;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 12px;
 }
 
 .full-screen-modal {
@@ -34,7 +38,7 @@
 
 .game-settings {
   width: 300px;
-  height: 150px;
+  height: 125px;
   margin: 0 auto;
   position: relative;
   opacity: 0.2;
@@ -44,7 +48,7 @@
   background-color: #ccc;
   display: none;
   width: 300px;
-  height: 150px;
+  height: 125px;
   position: absolute;
   top: 0;
   left: 0;
@@ -52,8 +56,35 @@
 }
 
 .scoreboard {
-  background-color: green;
   height: 50px;
   width: 300px;
+  position: relative;
   margin: 0 auto;
+  text-align: center;
+}
+
+.scoreboard-entry {
+  display: inline-block;
+}
+
+
+.scoreboard-entry i {
+font-size: 36px;
+}
+
+.scoreboard-entry .fa-close {
+  color: red;
+}
+
+.scoreboard-entry .fa-genderless {
+  color: green;
+  padding-left: 10px;
+}
+
+.scoreboard-score {
+  display: inline-block;
+  margin-left: 0;
+  font-size: 20px;
+  font-family: monospace;
+  vertical-align: super;
 }
