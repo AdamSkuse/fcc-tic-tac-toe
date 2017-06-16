@@ -6,6 +6,7 @@ var gameHistoryDiv = document.getElementById('game-history-div');
 var declareWinModal = document.getElementById('declare-win-modal');
 var playAgainButton = document.getElementById('play-again-btn');
 var resetGameButton = document.getElementById('reset-game-btn');
+var gameSettingsDiv = document.getElementById('game-settings');
 var gameSettingsOverlay = document.getElementById('game-settings-overlay');
 var gameboardOverlay = document.getElementById('gameboard-overlay');
 var scoreboardScoreTrackerX = document.getElementById('scoreboard-score-tracker-x');
@@ -39,6 +40,7 @@ function resetGame() {
   clearGameBoard();
   winnerDeclared = true;
   gameSettingsOverlay.style.display = "none";
+  gameSettingsDiv.classList.remove("disabled");
   gameboardOverlay.style.display = "block";
 }
 
@@ -100,6 +102,7 @@ function startGame() {
 
   winnerDeclared = false; // this allows user to make move by clicking on the board
   gameSettingsOverlay.style.display = "block";
+  gameSettingsDiv.classList.add("disabled");
   gameboardOverlay.style.display = "none";
   if (computersTurn === true) {
     computerPlanMove();
