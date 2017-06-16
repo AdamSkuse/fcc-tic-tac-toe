@@ -3,3 +3,7 @@
 @import "base/_global";
 @import "modules/_cell";
 @import "modules/_icons";
+@import "modules/_modal";
+@import "modules/_game-settings";
+@import "modules/_scoreboard";
+@import "modules/_gameboard";

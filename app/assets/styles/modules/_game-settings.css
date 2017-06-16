@@ -1,0 +1,21 @@
+.game-settings {
+  width: 300px;
+  height: 125px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.game-settings-overlay {
+  background-color: #ccc;
+  display: none;
+  width: 300px;
+  height: 125px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.1;
+}
+
+.disabled {
+  opacity: 0.2;
+}

@@ -1,0 +1,22 @@
+.gameboard {
+    border-style: solid;
+    border-color: black;
+    border-width: 0px;
+    width: 300px;
+    height: 300px;
+    padding: 0px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.gameboard-overlay {
+  display: inline-block;
+  background-color: #ccc;
+  width: 276px;
+  height: 276px;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 12px;
+}
